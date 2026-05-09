@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Banquetas y Muebles a Medida</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #FFFEF9;
@@ -46,7 +49,7 @@
     .nav-container {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 8px 24px;
+      padding: 0 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -58,8 +61,8 @@
       gap: 14px;
     }
     .logo img {
-      height: 94px;
-      max-width: 360px;
+      height: 110px;
+      max-width: 420px;
       object-fit: contain;
       display: block;
     }
@@ -109,17 +112,22 @@
       border-radius: 50%;
       z-index: 0;
     }
-    .hero-text h1 {
+    .hero-text h1,
+    .hero-card h2,
+    .section-title h2,
+    .product-card h3 {
+      font-family: 'Great Vibes', cursive;
+      font-weight: 400;
       margin: 0;
-      font-size: clamp(2.5rem, 4vw, 4.5rem);
       letter-spacing: -0.04em;
-      position: relative;
-      z-index: 1;
-    }
-    .gradient-title {
       background: linear-gradient(90deg, var(--violet) 0%, var(--accent) 48%, var(--accent-dark) 100%);
       -webkit-background-clip: text;
       color: transparent;
+    }
+    .hero-text h1 {
+      font-size: clamp(2.5rem, 4vw, 4.5rem);
+      position: relative;
+      z-index: 1;
     }
     .hero-text p {
       margin: 24px 0 0;
