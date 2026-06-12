@@ -426,6 +426,26 @@
     .gallery-lightbox-nav button:hover {
       background: var(--accent-dark);
     }
+    .gallery-lightbox-dots {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 14px;
+      max-width: 520px;
+    }
+    .gallery-lightbox-dot {
+      width: 11px;
+      height: 11px;
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+      padding: 0;
+    }
+    .gallery-lightbox-dot.active {
+      background: #ffffff;
+    }
     .gallery-lightbox-counter {
       color: white;
       font-weight: 700;
@@ -591,13 +611,13 @@
           <p>Perfectas para salas, vestidores y restaurantes. Diseños que combinan con cualquier espacio, con almohadones personalizables.</p>
           <div class="photo-row" id="gallery-banquetas">
             <div class="gallery-item" onclick="openLightbox('banquetas', 0)">
-              <img src="banqueta1.jpg" alt="Banqueta 1" />
+              <img src="banqueta 1.jpeg" alt="Banqueta 1" />
             </div>
             <div class="gallery-item" onclick="openLightbox('banquetas', 1)">
-              <img src="banqueta2.jpg" alt="Banqueta 2" />
+              <img src="banqueta 2.jpeg" alt="Banqueta 2" />
             </div>
             <div class="gallery-item" onclick="openLightbox('banquetas', 2)">
-              <img src="banqueta3.jpg" alt="Banqueta 3" />
+              <img src="banqueta 3.jpeg" alt="Banqueta 3" />
             </div>
           </div>
           <a href="#contacto" class="btn-inline">Personalizar</a>
@@ -642,13 +662,13 @@
           <p>Desde barras de cocina hasta islas de trabajo. Diseños ergonómicos con distintas alturas, tapizados y colores.</p>
           <div class="photo-row" id="gallery-taburetes">
             <div class="gallery-item" onclick="openLightbox('taburetes', 0)">
-              <img src="Mini1.jpg" alt="Taburete 1" />
+              <img src="mini 1.jpeg" alt="Taburete 1" />
             </div>
             <div class="gallery-item" onclick="openLightbox('taburetes', 1)">
-              <img src="Mini2.jpg" alt="Taburete 2" />
+              <img src="mini 2.jpeg" alt="Taburete 2" />
             </div>
             <div class="gallery-item" onclick="openLightbox('taburetes', 2)">
-              <img src="Mini3.jpg" alt="Taburete 3" />
+              <img src="mini 3.jpeg" alt="Taburete 3" />
             </div>
           </div>
           <a href="#contacto" class="btn-inline">Explorar</a>
@@ -660,10 +680,10 @@
           <div class="social-buttons-section">
             <div class="social-buttons">
               <a href="https://instagram.com" target="_blank" rel="noreferrer" class="social-button">
-                <img src="Insta.png" alt="Instagram" />
+                <img src="ista.png" alt="Instagram" />
               </a>
               <a href="https://wa.me/56958367006" target="_blank" rel="noreferrer" class="social-button">
-                <img src="WhatsApp.png" alt="WhatsApp" />
+                <img src="wasap.png" alt="WhatsApp" />
               </a>
             </div>
             <div class="custom-box">
@@ -704,12 +724,26 @@
         <span class="gallery-lightbox-counter"><span id="current-index">1</span> / <span id="total-images">3</span></span>
         <button onclick="nextImage()">Siguiente →</button>
       </div>
+      <div id="lightbox-dots" class="gallery-lightbox-dots" aria-label="Marcador de fotos"></div>
     </div>
   </div>
   <script>
     const galleries = {
-      banquetas: ['banqueta1.jpg', 'banqueta2.jpg', 'banqueta3.jpg'],
-      taburetes: ['Mini1.jpg', 'Mini2.jpg', 'Mini3.jpg']
+      banquetas: [
+        'banqueta 1.jpeg',
+        'banqueta 2.jpeg',
+        'banqueta 3.jpeg',
+        'banqueta 4.jpeg',
+        'banqueta 5.jpeg',
+        'banqueta 6.jpeg'
+      ],
+      taburetes: [
+        'mini 1.jpeg',
+        'mini 2.jpeg',
+        'mini 3.jpeg',
+        'mini 4.jpeg',
+        'mini 5.jpeg'
+      ]
     };
     let currentGallery = null;
     let currentIndex = 0;
@@ -724,8 +758,10 @@
       const total = document.getElementById('total-images');
 
       image.src = images[index];
+      image.alt = `${gallery} ${index + 1}`;
       counter.textContent = index + 1;
       total.textContent = images.length;
+      renderDots();
       lightbox.classList.add('active');
     }
 
@@ -741,7 +777,9 @@
       const image = document.getElementById('lightbox-image');
       const counter = document.getElementById('current-index');
       image.src = images[currentIndex];
+      image.alt = `${currentGallery} ${currentIndex + 1}`;
       counter.textContent = currentIndex + 1;
+      renderDots();
     }
 
     function prevImage() {
@@ -751,7 +789,29 @@
       const image = document.getElementById('lightbox-image');
       const counter = document.getElementById('current-index');
       image.src = images[currentIndex];
+      image.alt = `${currentGallery} ${currentIndex + 1}`;
       counter.textContent = currentIndex + 1;
+      renderDots();
+    }
+
+    function goToImage(index) {
+      if (!currentGallery) return;
+      const images = galleries[currentGallery];
+      currentIndex = index;
+      const image = document.getElementById('lightbox-image');
+      const counter = document.getElementById('current-index');
+      image.src = images[currentIndex];
+      image.alt = `${currentGallery} ${currentIndex + 1}`;
+      counter.textContent = currentIndex + 1;
+      renderDots();
+    }
+
+    function renderDots() {
+      if (!currentGallery) return;
+      const dots = document.getElementById('lightbox-dots');
+      dots.innerHTML = galleries[currentGallery].map((_, index) => (
+        `<button class="gallery-lightbox-dot${index === currentIndex ? ' active' : ''}" onclick="goToImage(${index})" aria-label="Ver foto ${index + 1}"></button>`
+      )).join('');
     }
 
     document.addEventListener('keydown', (e) => {
