@@ -93,7 +93,7 @@
     .hero {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 80px 24px 48px;
+      padding: 32px 24px 32px;
       display: grid;
       gap: 40px;
       align-items: center;
@@ -174,7 +174,7 @@
     }
     .btn-secondary {
       background: #ffffff;
-      color: var(--deep-blue);
+      color: var(--text);
       border: 1px solid var(--light-gray);
     }
     .btn:hover { transform: translateY(-1px); }
@@ -443,7 +443,7 @@
       transform: translateY(-1px);
     }
     .btn-whatsapp {
-      background: #25D366;
+      background: linear-gradient(135deg, var(--violet), var(--accent));
       color: #ffffff;
       padding: 13px 28px;
       border-radius: 999px;
@@ -453,12 +453,17 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      transition: background 0.2s ease, transform 0.2s ease;
-      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 2px 8px rgba(82, 135, 165, 0.28);
     }
     .btn-whatsapp:hover {
-      background: #1aad52;
       transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(82, 135, 165, 0.42);
+    }
+    .btn-whatsapp img {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
     }
     .lightbox-whatsapp {
       display: flex;
@@ -569,7 +574,7 @@
     @media (max-width: 860px) {
       .hero {
         grid-template-columns: 1fr;
-        padding-top: 60px;
+        padding-top: 28px;
       }
       .catalogue-grid, .features {
         grid-template-columns: 1fr;
@@ -579,7 +584,7 @@
     }
     @media (max-width: 560px) {
       .nav-container { padding: 16px; }
-      .hero { padding: 60px 18px 36px; }
+      .hero { padding: 24px 18px 24px; }
       .hero-buttons { justify-content: center; }
       .gallery-lightbox-content {
         max-width: 95%;
@@ -647,7 +652,7 @@
         <article class="product-card">
           <span class="tag">Banquetas</span>
           <h3>Banquetas elegantes y confortables</h3>
-          <p>Perfectas para salas, vestidores y restaurantes. Diseños que combinan con cualquier espacio, con almohadones personalizables. <a href="https://wa.me/56958367006?text=Hola%2C%20quiero%20cotizar%20por%20una%20banqueta" target="_blank" rel="noreferrer" style="color: var(--accent-dark); font-weight: 600; text-decoration: none;">Contáctanos por nuestro WhatsApp y pide la tuya.</a></p>
+          <p>Perfectas para salas, vestidores y restaurantes. Diseños que combinan con cualquier espacio, con almohadones personalizables. <a href="https://wa.me/56958367006?text=Hola%2C%20quiero%20cotizar%20por%20una%20banqueta" target="_blank" rel="noreferrer" style="color: var(--accent-dark); font-weight: 600; text-decoration: none;">Contáctanos por WhatsApp y cotiza la tuya.</a></p>
           <div class="photo-row" id="gallery-banquetas">
             <div class="gallery-item" onclick="openLightbox('banquetas', 0)">
               <img src="banqueta 1.jpeg" alt="Banqueta 1" />
@@ -664,41 +669,29 @@
         <article class="product-card">
           <span class="tag">Baúles</span>
           <h3>Baúles con diseño y almacenamiento</h3>
-          <p>Soluciones versátiles para guardar ropa, juguetes o mantas. Elige el tamaño, acabado y la tela que mejor combine con tu ambiente.</p>
+          <p>Soluciones versátiles para guardar ropa, juguetes o mantas. Elige el tamaño, acabado y la tela que mejor combine con tu ambiente. <a href="https://wa.me/56958367006?text=Hola%2C%20quiero%20cotizar%20por%20un%20ba%C3%BAl" target="_blank" rel="noreferrer" style="color: var(--accent-dark); font-weight: 600; text-decoration: none;">Contáctanos por WhatsApp y cotiza la tuya.</a></p>
           <div class="photo-row">
             <div class="photo-box">Baúl Tapizado</div>
             <div class="photo-box">Baúl Retro</div>
             <div class="photo-box">Baúl Multifunción</div>
           </div>
-          <div class="swatches">
-            <span class="swatch" style="background:#374151"></span>
-            <span class="swatch" style="background:#6b7280"></span>
-            <span class="swatch" style="background:#cbd5e1"></span>
-            <span class="swatch" style="background:#fde68a"></span>
-          </div>
-          <a href="#contacto" class="btn-inline">Ver detalles</a>
+          <a href="https://wa.me/56958367006?text=Hola%2C%20quiero%20cotizar%20por%20un%20ba%C3%BAl" class="btn-inline" target="_blank" rel="noreferrer">Contactar por WhatsApp</a>
         </article>
         <article class="product-card">
           <span class="tag">Puff</span>
           <h3>Puff cómodos y con estilo</h3>
-          <p>Modelos suaves para sala de estar, habitación o catálogo de tiendas. Ideal para crear un rincón acogedor con colores a medida.</p>
+          <p>Modelos suaves para sala de estar, habitación o catálogo de tiendas. Ideal para crear un rincón acogedor con colores a medida. <a href="https://wa.me/56958367006?text=Hola%2C%20quiero%20cotizar%20por%20un%20puff" target="_blank" rel="noreferrer" style="color: var(--accent-dark); font-weight: 600; text-decoration: none;">Contáctanos por WhatsApp y cotiza la tuya.</a></p>
           <div class="photo-row">
             <div class="photo-box">Puff Redondo</div>
             <div class="photo-box">Puff Cuadrado</div>
             <div class="photo-box">Puff Bajo</div>
-          </div>
-          <div class="swatches">
-            <span class="swatch" style="background:#d97706"></span>
-            <span class="swatch" style="background:#7c3aed"></span>
-            <span class="swatch" style="background:#14b8a6"></span>
-            <span class="swatch" style="background:#f8fafc"></span>
           </div>
           <a href="https://wa.me/56958367006?text=Hola%2C%20quiero%20cotizar%20por%20un%20puff" class="btn-inline" target="_blank" rel="noreferrer">Contactar por WhatsApp</a>
         </article>
         <article class="product-card">
           <span class="tag">Taburetes</span>
           <h3>Taburetes resistentes para cualquier proyecto</h3>
-          <p>Desde barras de cocina hasta islas de trabajo. Diseños ergonómicos con distintas alturas, tapizados y colores.</p>
+          <p>Desde barras de cocina hasta islas de trabajo. Diseños ergonómicos con distintas alturas, tapizados y colores. <a href="https://wa.me/56958367006?text=Hola%2C%20quiero%20cotizar%20por%20un%20taburete" target="_blank" rel="noreferrer" style="color: var(--accent-dark); font-weight: 600; text-decoration: none;">Contáctanos por WhatsApp y cotiza la tuya.</a></p>
           <div class="photo-row" id="gallery-taburetes">
             <div class="gallery-item" onclick="openLightbox('taburetes', 0)">
               <img src="mini 1.jpeg" alt="Taburete 1" />
@@ -710,7 +703,7 @@
               <img src="mini 3.jpeg" alt="Taburete 3" />
             </div>
           </div>
-          <a href="#contacto" class="btn-inline">Explorar</a>
+          <a href="https://wa.me/56958367006?text=Hola%2C%20quiero%20cotizar%20por%20un%20taburete" class="btn-inline" target="_blank" rel="noreferrer">Contactar por WhatsApp</a>
         </article>
         <article class="product-card">
           <span class="tag">Crea la tuya</span>
@@ -765,7 +758,7 @@
       </div>
       <div id="lightbox-dots" class="gallery-lightbox-dots" aria-label="Marcador de fotos"></div>
       <div class="lightbox-whatsapp">
-        <a id="whatsapp-quiero-btn" href="#" class="btn-whatsapp" target="_blank" rel="noreferrer">💬 Quiero esta</a>
+        <a id="whatsapp-quiero-btn" href="#" class="btn-whatsapp" target="_blank" rel="noreferrer"><img src="wasap.png" alt="WhatsApp" /> Quiero esta</a>
       </div>
     </div>
   </div>
