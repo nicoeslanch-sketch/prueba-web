@@ -53,7 +53,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      min-height: 110px;
+      min-height: 140px;
     }
     .logo {
       display: flex;
@@ -61,7 +61,7 @@
       gap: 14px;
     }
     .logo img {
-      height: 110px;
+      height: 140px;
       max-width: 420px;
       object-fit: contain;
       display: block;
@@ -73,12 +73,23 @@
       color: var(--text);
     }
     nav a {
-      color: var(--text);
+      color: #ffffff;
       text-decoration: none;
-      margin-left: 24px;
-      font-weight: 600;
+      margin-left: 12px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 10px 22px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--violet), var(--accent));
+      box-shadow: 0 2px 8px rgba(82, 135, 165, 0.28);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: inline-block;
     }
-    nav a:hover { color: var(--accent-dark); }
+    nav a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(82, 135, 165, 0.42);
+      color: #ffffff;
+    }
     .hero {
       max-width: 1100px;
       margin: 0 auto;
@@ -406,6 +417,7 @@
       max-width: 100%;
       max-height: 70vh;
       object-fit: contain;
+      transition: opacity 0.2s ease;
     }
     .gallery-lightbox-nav {
       display: flex;
@@ -414,17 +426,44 @@
       align-items: center;
     }
     .gallery-lightbox-nav button {
-      background: var(--accent);
+      background: rgba(255, 255, 255, 0.15);
       color: white;
-      border: none;
-      padding: 10px 16px;
-      border-radius: 6px;
+      border: 1.5px solid rgba(255, 255, 255, 0.4);
+      padding: 12px 24px;
+      border-radius: 999px;
       cursor: pointer;
       font-weight: 700;
-      transition: background 0.2s ease;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+      transition: background 0.2s ease, transform 0.2s ease;
+      backdrop-filter: blur(6px);
     }
     .gallery-lightbox-nav button:hover {
-      background: var(--accent-dark);
+      background: rgba(255, 255, 255, 0.28);
+      transform: translateY(-1px);
+    }
+    .btn-whatsapp {
+      background: #25D366;
+      color: #ffffff;
+      padding: 13px 28px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s ease, transform 0.2s ease;
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+    }
+    .btn-whatsapp:hover {
+      background: #1aad52;
+      transform: translateY(-2px);
+    }
+    .lightbox-whatsapp {
+      display: flex;
+      justify-content: center;
+      margin-top: 14px;
     }
     .gallery-lightbox-dots {
       display: flex;
@@ -608,7 +647,7 @@
         <article class="product-card">
           <span class="tag">Banquetas</span>
           <h3>Banquetas elegantes y confortables</h3>
-          <p>Perfectas para salas, vestidores y restaurantes. Diseños que combinan con cualquier espacio, con almohadones personalizables.</p>
+          <p>Perfectas para salas, vestidores y restaurantes. Diseños que combinan con cualquier espacio, con almohadones personalizables. <a href="https://wa.me/56958367006?text=Hola%2C%20quiero%20cotizar%20por%20una%20banqueta" target="_blank" rel="noreferrer" style="color: var(--accent-dark); font-weight: 600; text-decoration: none;">Contáctanos por nuestro WhatsApp y pide la tuya.</a></p>
           <div class="photo-row" id="gallery-banquetas">
             <div class="gallery-item" onclick="openLightbox('banquetas', 0)">
               <img src="banqueta 1.jpeg" alt="Banqueta 1" />
@@ -620,7 +659,7 @@
               <img src="banqueta 3.jpeg" alt="Banqueta 3" />
             </div>
           </div>
-          <a href="#contacto" class="btn-inline">Personalizar</a>
+          <a href="https://wa.me/56958367006?text=Hola%2C%20quiero%20cotizar%20por%20una%20banqueta" class="btn-inline" target="_blank" rel="noreferrer">Contactar por WhatsApp</a>
         </article>
         <article class="product-card">
           <span class="tag">Baúles</span>
@@ -654,7 +693,7 @@
             <span class="swatch" style="background:#14b8a6"></span>
             <span class="swatch" style="background:#f8fafc"></span>
           </div>
-          <a href="#contacto" class="btn-inline">Personalizar</a>
+          <a href="https://wa.me/56958367006?text=Hola%2C%20quiero%20cotizar%20por%20un%20puff" class="btn-inline" target="_blank" rel="noreferrer">Contactar por WhatsApp</a>
         </article>
         <article class="product-card">
           <span class="tag">Taburetes</span>
@@ -679,7 +718,7 @@
           <p>Elige uno de nuestros productos, como banquetas, baúles, puff o taburetes, y personalízalo con la tela, patas, colores y detalles que prefieras.</p>
           <div class="social-buttons-section">
             <div class="social-buttons">
-              <a href="https://instagram.com" target="_blank" rel="noreferrer" class="social-button">
+              <a href="https://www.instagram.com/crealuz.deco?igsh=eno0bGI1ZDNrenh3" target="_blank" rel="noreferrer" class="social-button">
                 <img src="ista.png" alt="Instagram" />
               </a>
               <a href="https://wa.me/56958367006" target="_blank" rel="noreferrer" class="social-button">
@@ -725,9 +764,17 @@
         <button onclick="nextImage()">Siguiente →</button>
       </div>
       <div id="lightbox-dots" class="gallery-lightbox-dots" aria-label="Marcador de fotos"></div>
+      <div class="lightbox-whatsapp">
+        <a id="whatsapp-quiero-btn" href="#" class="btn-whatsapp" target="_blank" rel="noreferrer">💬 Quiero esta</a>
+      </div>
     </div>
   </div>
   <script>
+    const WA_NUMBER = '56958367006';
+    const galleryLabels = {
+      banquetas: 'banqueta',
+      taburetes: 'taburete'
+    };
     const galleries = {
       banquetas: [
         'banqueta 1.jpeg',
@@ -748,6 +795,24 @@
     let currentGallery = null;
     let currentIndex = 0;
 
+    function updateWhatsAppBtn() {
+      const btn = document.getElementById('whatsapp-quiero-btn');
+      if (!btn || !currentGallery) return;
+      const label = galleryLabels[currentGallery] || currentGallery;
+      const msg = encodeURIComponent(`Hola, quiero cotizar por esta ${label} (modelo ${currentIndex + 1})`);
+      btn.href = `https://wa.me/${WA_NUMBER}?text=${msg}`;
+    }
+
+    function setLightboxImage(src, alt) {
+      const image = document.getElementById('lightbox-image');
+      image.style.opacity = '0';
+      setTimeout(() => {
+        image.src = src;
+        image.alt = alt;
+        image.style.opacity = '1';
+      }, 180);
+    }
+
     function openLightbox(gallery, index) {
       currentGallery = gallery;
       currentIndex = index;
@@ -759,9 +824,11 @@
 
       image.src = images[index];
       image.alt = `${gallery} ${index + 1}`;
+      image.style.opacity = '1';
       counter.textContent = index + 1;
       total.textContent = images.length;
       renderDots();
+      updateWhatsAppBtn();
       lightbox.classList.add('active');
     }
 
@@ -774,36 +841,33 @@
       if (!currentGallery) return;
       const images = galleries[currentGallery];
       currentIndex = (currentIndex + 1) % images.length;
-      const image = document.getElementById('lightbox-image');
       const counter = document.getElementById('current-index');
-      image.src = images[currentIndex];
-      image.alt = `${currentGallery} ${currentIndex + 1}`;
+      setLightboxImage(images[currentIndex], `${currentGallery} ${currentIndex + 1}`);
       counter.textContent = currentIndex + 1;
       renderDots();
+      updateWhatsAppBtn();
     }
 
     function prevImage() {
       if (!currentGallery) return;
       const images = galleries[currentGallery];
       currentIndex = (currentIndex - 1 + images.length) % images.length;
-      const image = document.getElementById('lightbox-image');
       const counter = document.getElementById('current-index');
-      image.src = images[currentIndex];
-      image.alt = `${currentGallery} ${currentIndex + 1}`;
+      setLightboxImage(images[currentIndex], `${currentGallery} ${currentIndex + 1}`);
       counter.textContent = currentIndex + 1;
       renderDots();
+      updateWhatsAppBtn();
     }
 
     function goToImage(index) {
       if (!currentGallery) return;
       const images = galleries[currentGallery];
       currentIndex = index;
-      const image = document.getElementById('lightbox-image');
       const counter = document.getElementById('current-index');
-      image.src = images[currentIndex];
-      image.alt = `${currentGallery} ${currentIndex + 1}`;
+      setLightboxImage(images[currentIndex], `${currentGallery} ${currentIndex + 1}`);
       counter.textContent = currentIndex + 1;
       renderDots();
+      updateWhatsAppBtn();
     }
 
     function renderDots() {
