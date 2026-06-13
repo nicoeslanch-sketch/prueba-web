@@ -53,7 +53,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      min-height: 140px;
+      min-height: 80px;
     }
     .logo {
       display: flex;
@@ -61,8 +61,8 @@
       gap: 14px;
     }
     .logo img {
-      height: 140px;
-      max-width: 420px;
+      height: 80px;
+      max-width: 320px;
       object-fit: contain;
       display: block;
     }
@@ -111,6 +111,7 @@
       background: rgba(160, 173, 174, 0.18);
       border-radius: 48% 52% 47% 53% / 54% 44% 56% 46%;
       z-index: 0;
+      pointer-events: none;
     }
     .hero::after {
       content: '';
@@ -122,6 +123,7 @@
       background: rgba(220, 234, 237, 0.55);
       border-radius: 50%;
       z-index: 0;
+      pointer-events: none;
     }
     .hero-text h1,
     .hero-card h2,
@@ -167,6 +169,10 @@
       cursor: pointer;
       font-weight: 700;
       transition: transform 0.2s ease, background 0.2s ease;
+      text-decoration: none;
+      display: inline-block;
+      position: relative;
+      z-index: 1;
     }
     .btn-primary {
       background: linear-gradient(135deg, var(--violet), var(--accent), var(--accent-dark));
