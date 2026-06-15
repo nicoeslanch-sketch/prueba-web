@@ -289,6 +289,22 @@
     .photo-row .gallery-item {
       border-radius: 16px;
     }
+    .photo-row.single-image {
+      grid-template-columns: 1fr;
+    }
+    .modelo-unico {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--violet), var(--accent));
+      color: #ffffff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      width: fit-content;
+      letter-spacing: 0.03em;
+    }
     .photo-box {
       background: #e2e8f0;
       border-radius: 18px;
@@ -423,7 +439,8 @@
       max-width: 100%;
       max-height: 70vh;
       object-fit: contain;
-      transition: opacity 0.2s ease;
+      transition: opacity 0.25s ease-in-out;
+      will-change: opacity;
     }
     .gallery-lightbox-nav {
       display: flex;
@@ -676,10 +693,11 @@
           <span class="tag">Baúles</span>
           <h3>Baúles con diseño y almacenamiento</h3>
           <p>Soluciones versátiles para guardar ropa, juguetes o mantas. Elige el tamaño, acabado y la tela que mejor combine con tu ambiente. <a href="https://wa.me/56958367006?text=Hola%2C%20quiero%20cotizar%20por%20un%20ba%C3%BAl" target="_blank" rel="noreferrer" style="color: var(--accent-dark); font-weight: 600; text-decoration: none;">Contáctanos por WhatsApp y cotiza la tuya.</a></p>
-          <div class="photo-row">
-            <div class="photo-box">Baúl Tapizado</div>
-            <div class="photo-box">Baúl Retro</div>
-            <div class="photo-box">Baúl Multifunción</div>
+          <span class="modelo-unico">★ Modelo único</span>
+          <div class="photo-row single-image" id="gallery-baules">
+            <div class="gallery-item" onclick="openLightbox('baules', 0)">
+              <img src="baul.png" alt="Baúl" />
+            </div>
           </div>
           <a href="https://wa.me/56958367006?text=Hola%2C%20quiero%20cotizar%20por%20un%20ba%C3%BAl" class="btn-inline" target="_blank" rel="noreferrer">Contactar por WhatsApp</a>
         </article>
@@ -772,6 +790,7 @@
     const WA_NUMBER = '56958367006';
     const galleryLabels = {
       banquetas: 'banqueta',
+      baules: 'baúl',
       taburetes: 'taburete'
     };
     const galleries = {
@@ -782,6 +801,9 @@
         'banqueta 4.jpeg',
         'banqueta 5.jpeg',
         'banqueta 6.jpeg'
+      ],
+      baules: [
+        'baul.png'
       ],
       taburetes: [
         'mini 1.jpeg',
@@ -809,7 +831,7 @@
         image.src = src;
         image.alt = alt;
         image.style.opacity = '1';
-      }, 180);
+      }, 250);
     }
 
     function openLightbox(gallery, index) {
