@@ -823,6 +823,22 @@
     let currentGallery = null;
     let currentIndex = 0;
     let fadeTimer = null;
+    const imgCache = {};
+
+    function preloadGallery(gallery) {
+      galleries[gallery].forEach(src => {
+        if (!imgCache[src]) {
+          const img = new Image();
+          img.src = src;
+          imgCache[src] = img;
+        }
+      });
+    }
+
+    function isLoaded(src) {
+      const c = imgCache[src];
+      return c && c.complete && c.naturalWidth > 0;
+    }
 
     function updateWhatsAppBtn() {
       const btn = document.getElementById('whatsapp-quiero-btn');
@@ -835,22 +851,42 @@
 
     function setLightboxImage(src, alt, direction = 1) {
       const image = document.getElementById('lightbox-image');
-      if (fadeTimer) clearTimeout(fadeTimer);
-      image.style.transition = 'opacity 0.22s ease, transform 0.22s ease';
+      if (fadeTimer) { clearTimeout(fadeTimer); fadeTimer = null; }
+
+      // Slide current image out
+      image.style.transition = 'opacity 0.18s ease, transform 0.18s ease';
       image.style.opacity = '0';
-      image.style.transform = `translateX(${direction * -40}px)`;
-      fadeTimer = setTimeout(() => {
+      image.style.transform = `translateX(${direction * -36}px)`;
+
+      function applyNew() {
+        image.style.transition = 'none';
+        image.style.transform = `translateX(${direction * 36}px)`;
+        image.style.opacity = '0';
         image.src = src;
         image.alt = alt;
-        image.style.transition = 'none';
-        image.style.transform = `translateX(${direction * 40}px)`;
-        image.style.opacity = '0';
         void image.offsetWidth;
-        image.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        image.style.transition = 'opacity 0.26s ease, transform 0.26s ease';
         image.style.opacity = '1';
         image.style.transform = 'translateX(0)';
-        fadeTimer = null;
-      }, 230);
+      }
+
+      // Esperar a que la imagen esté lista Y la animación de salida termine
+      let slideOutDone = false;
+      let loadDone = isLoaded(src);
+
+      function tryApply() {
+        if (slideOutDone && loadDone) applyNew();
+      }
+
+      if (!loadDone) {
+        const img = imgCache[src] || new Image();
+        imgCache[src] = img;
+        img.onload = () => { loadDone = true; tryApply(); };
+        img.onerror = () => { loadDone = true; tryApply(); };
+        if (!img.src || img.src === window.location.href) img.src = src;
+      }
+
+      fadeTimer = setTimeout(() => { slideOutDone = true; fadeTimer = null; tryApply(); }, 190);
     }
 
     function openLightbox(gallery, index) {
@@ -862,9 +898,11 @@
       const counter = document.getElementById('current-index');
       const total = document.getElementById('total-images');
 
+      preloadGallery(gallery);
       image.src = images[index];
       image.alt = `${gallery} ${index + 1}`;
       image.style.opacity = '1';
+      image.style.transform = 'translateX(0)';
       counter.textContent = index + 1;
       total.textContent = images.length;
       renderDots();
