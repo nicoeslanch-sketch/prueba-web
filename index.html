@@ -436,8 +436,8 @@
       max-width: 100%;
       max-height: 70vh;
       object-fit: contain;
-      transition: opacity 0.25s ease-in-out;
-      will-change: opacity;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      will-change: opacity, transform;
     }
     .gallery-lightbox-nav {
       display: flex;
@@ -704,10 +704,14 @@
           <span class="tag">Puff</span>
           <h3>Puff cómodos y con estilo</h3>
           <p>Modelos suaves para sala de estar, habitación o catálogo de tiendas. Ideal para crear un rincón acogedor con colores a medida. <a href="https://wa.me/56958367006?text=Hola%2C%20quiero%20cotizar%20por%20un%20puff" target="_blank" rel="noreferrer" style="color: var(--accent-dark); font-weight: 600; text-decoration: none;">Contáctanos por WhatsApp y cotiza la tuya.</a></p>
-          <div class="photo-row">
-            <div class="photo-box">Puff Redondo</div>
-            <div class="photo-box">Puff Cuadrado</div>
-            <div class="photo-box">Puff Bajo</div>
+          <div class="photo-row" id="gallery-puff">
+            <div class="gallery-item" onclick="openLightbox('puff', 0)">
+              <img src="puff.png" alt="Puff" />
+            </div>
+            <div class="gallery-item" onclick="openLightbox('puff', 1)">
+              <img src="puff gris.png" alt="Puff Gris" />
+            </div>
+            <div></div>
           </div>
           <a href="https://wa.me/56958367006?text=Hola%2C%20quiero%20cotizar%20por%20un%20puff" class="btn-inline" target="_blank" rel="noreferrer">Contactar por WhatsApp</a>
         </article>
@@ -741,9 +745,8 @@
                 <img src="wasap.png" alt="WhatsApp" />
               </a>
             </div>
-            <div class="custom-box">
-              <h4>Contáctanos</h4>
-              <p>Escríbenos y elige tu tela, patas, elige y personaliza a tu manera cualquiera de nuestros productos.</p>
+            <div class="custom-box" style="padding: 0; overflow: hidden;">
+              <video src="video ista.mp4" autoplay muted loop playsinline style="width: 100%; display: block; border-radius: 16px;"></video>
             </div>
           </div>
           <a href="https://wa.me/56958367006" class="btn-inline" target="_blank" rel="noreferrer">Crea la tuya</a>
@@ -790,12 +793,8 @@
     const galleryLabels = {
       banquetas: 'Banqueta',
       baules: 'Baúl',
+      puff: 'Puff',
       taburetes: 'Taburete'
-    };
-    const galleryTotals = {
-      banquetas: 6,
-      baules: 1,
-      taburetes: 5
     };
     const galleries = {
       banquetas: [
@@ -808,6 +807,10 @@
       ],
       baules: [
         'baul.png'
+      ],
+      puff: [
+        'puff.png',
+        'puff gris.png'
       ],
       taburetes: [
         'mini 1.jpeg',
@@ -830,18 +833,24 @@
       btn.href = `https://wa.me/${WA_NUMBER}?text=${msg}`;
     }
 
-    function setLightboxImage(src, alt) {
+    function setLightboxImage(src, alt, direction = 1) {
       const image = document.getElementById('lightbox-image');
       if (fadeTimer) clearTimeout(fadeTimer);
-      image.style.transition = 'none';
+      image.style.transition = 'opacity 0.22s ease, transform 0.22s ease';
       image.style.opacity = '0';
+      image.style.transform = `translateX(${direction * -40}px)`;
       fadeTimer = setTimeout(() => {
         image.src = src;
         image.alt = alt;
-        image.style.transition = 'opacity 0.25s ease-in-out';
+        image.style.transition = 'none';
+        image.style.transform = `translateX(${direction * 40}px)`;
+        image.style.opacity = '0';
+        void image.offsetWidth;
+        image.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
         image.style.opacity = '1';
+        image.style.transform = 'translateX(0)';
         fadeTimer = null;
-      }, 120);
+      }, 230);
     }
 
     function openLightbox(gallery, index) {
@@ -873,7 +882,7 @@
       const images = galleries[currentGallery];
       currentIndex = (currentIndex + 1) % images.length;
       const counter = document.getElementById('current-index');
-      setLightboxImage(images[currentIndex], `${currentGallery} ${currentIndex + 1}`);
+      setLightboxImage(images[currentIndex], `${currentGallery} ${currentIndex + 1}`, 1);
       counter.textContent = currentIndex + 1;
       renderDots();
       updateWhatsAppBtn();
@@ -884,7 +893,7 @@
       const images = galleries[currentGallery];
       currentIndex = (currentIndex - 1 + images.length) % images.length;
       const counter = document.getElementById('current-index');
-      setLightboxImage(images[currentIndex], `${currentGallery} ${currentIndex + 1}`);
+      setLightboxImage(images[currentIndex], `${currentGallery} ${currentIndex + 1}`, -1);
       counter.textContent = currentIndex + 1;
       renderDots();
       updateWhatsAppBtn();
@@ -893,9 +902,10 @@
     function goToImage(index) {
       if (!currentGallery) return;
       const images = galleries[currentGallery];
+      const direction = index > currentIndex ? 1 : -1;
       currentIndex = index;
       const counter = document.getElementById('current-index');
-      setLightboxImage(images[currentIndex], `${currentGallery} ${currentIndex + 1}`);
+      setLightboxImage(images[currentIndex], `${currentGallery} ${currentIndex + 1}`, direction);
       counter.textContent = currentIndex + 1;
       renderDots();
       updateWhatsAppBtn();
