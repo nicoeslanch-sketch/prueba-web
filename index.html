@@ -815,6 +815,7 @@
     };
     let currentGallery = null;
     let currentIndex = 0;
+    let fadeTimer = null;
 
     function updateWhatsAppBtn() {
       const btn = document.getElementById('whatsapp-quiero-btn');
@@ -826,12 +827,16 @@
 
     function setLightboxImage(src, alt) {
       const image = document.getElementById('lightbox-image');
+      if (fadeTimer) clearTimeout(fadeTimer);
+      image.style.transition = 'none';
       image.style.opacity = '0';
-      setTimeout(() => {
+      fadeTimer = setTimeout(() => {
         image.src = src;
         image.alt = alt;
+        image.style.transition = 'opacity 0.25s ease-in-out';
         image.style.opacity = '1';
-      }, 250);
+        fadeTimer = null;
+      }, 120);
     }
 
     function openLightbox(gallery, index) {
