@@ -788,9 +788,14 @@
   <script>
     const WA_NUMBER = '56958367006';
     const galleryLabels = {
-      banquetas: 'banqueta',
-      baules: 'baúl',
-      taburetes: 'taburete'
+      banquetas: 'Banqueta',
+      baules: 'Baúl',
+      taburetes: 'Taburete'
+    };
+    const galleryTotals = {
+      banquetas: 6,
+      baules: 1,
+      taburetes: 5
     };
     const galleries = {
       banquetas: [
@@ -819,8 +824,9 @@
     function updateWhatsAppBtn() {
       const btn = document.getElementById('whatsapp-quiero-btn');
       if (!btn || !currentGallery) return;
-      const label = galleryLabels[currentGallery] || currentGallery;
-      const msg = encodeURIComponent(`Hola, quiero cotizar por esta ${label} (modelo ${currentIndex + 1})`);
+      const producto = galleryLabels[currentGallery] || currentGallery;
+      const total = galleries[currentGallery].length;
+      const msg = encodeURIComponent(`Hola! Vi su página web y me interesa cotizar:\n📦 Producto: ${producto}\n🔢 Modelo: ${currentIndex + 1} de ${total}`);
       btn.href = `https://wa.me/${WA_NUMBER}?text=${msg}`;
     }
 
