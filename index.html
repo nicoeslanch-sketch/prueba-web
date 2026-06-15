@@ -289,9 +289,6 @@
     .photo-row .gallery-item {
       border-radius: 16px;
     }
-    .photo-row.single-image {
-      grid-template-columns: 1fr;
-    }
     .modelo-unico {
       display: inline-flex;
       align-items: center;
@@ -694,10 +691,12 @@
           <h3>Baúles con diseño y almacenamiento</h3>
           <p>Soluciones versátiles para guardar ropa, juguetes o mantas. Elige el tamaño, acabado y la tela que mejor combine con tu ambiente. <a href="https://wa.me/56958367006?text=Hola%2C%20quiero%20cotizar%20por%20un%20ba%C3%BAl" target="_blank" rel="noreferrer" style="color: var(--accent-dark); font-weight: 600; text-decoration: none;">Contáctanos por WhatsApp y cotiza la tuya.</a></p>
           <span class="modelo-unico">★ Modelo único</span>
-          <div class="photo-row single-image" id="gallery-baules">
+          <div class="photo-row" id="gallery-baules">
+            <div></div>
             <div class="gallery-item" onclick="openLightbox('baules', 0)">
               <img src="baul.png" alt="Baúl" />
             </div>
+            <div></div>
           </div>
           <a href="https://wa.me/56958367006?text=Hola%2C%20quiero%20cotizar%20por%20un%20ba%C3%BAl" class="btn-inline" target="_blank" rel="noreferrer">Contactar por WhatsApp</a>
         </article>
